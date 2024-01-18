@@ -1,0 +1,27 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: devops-lab-deployment
+spec:
+  selector:
+    matchLabels:
+      app: devops-lab-devops-project
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+
+  template:
+    metadata:
+      labels:
+        app: devops-lab-devops-project
+    spec:
+      containers:
+      - name: devops-lab-devops-project
+        image: bejoykoottumkal/devops-lab
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+
