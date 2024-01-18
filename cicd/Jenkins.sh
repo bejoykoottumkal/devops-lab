@@ -5,7 +5,10 @@ pipeline {
   // Define variables
   environment {
     GIT_REPO = "https://github.com/bejoykoottumkal/devops-lab.git"
-   
+     // dckr_bejoy is the id used when defining the Docker Hub credentials in Jenkins. 
+    DOCKERHUB_CREDENTIALS= credentials('dckr_bejoy') 
+    DOCKER_HUB_REPO = "bejoykoottumkal/devops-lab"
+    ANSIBLE_SERVER_IP="52.90.96.184"   
   }  
 
   tools {
