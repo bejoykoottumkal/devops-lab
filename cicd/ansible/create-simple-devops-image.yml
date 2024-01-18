@@ -1,0 +1,21 @@
+---
+- hosts: ansible-server
+  become: true
+
+  tasks:
+  
+  - name: Login to Dockerhub
+    command: sudo docker login -u bejoykoottumkal@gmail.com -p dckr_pat_KKj6tEX1WMiDnqPcA3olJMd7kos 
+  
+  - name: create docker image using war file
+    command: sudo docker build -t bejoykoottumkal/devops-lab:latest .
+    args:
+      chdir: /opt/k8s-lab
+
+  - name: create tag to image
+    command: sudo docker tag bejoykoottumkal/devops-lab bejoykoottumkal/devops-lab
+
+  - name: push image on to dockerhub
+    command: sudo docker push bejoykoottumkal/devops-lab:latest
+
+
